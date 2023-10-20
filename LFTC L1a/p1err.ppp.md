@@ -3,9 +3,9 @@ Must contain 2 types of lexical errors**
 
 ```py++
 main
-	int a b c //int is not a valid keyword
+	'num a b c //'num is not a valid identifier
 	in a b c
-	num res1 = min a, b //function call parameters must be separated by a space
+	num res1 =- min a b //=- is not a valid operator
 	num res2 = min res1 c
 	out res2
 ```
