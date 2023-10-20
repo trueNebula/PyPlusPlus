@@ -1,3 +1,11 @@
+identifier = word {number}
+word = letter {letter}
+letter = "a" | ... | "z" | "A" | ... | "Z"
+number = digit {digit}
+digit = "0" | ... | "9"
+
+constant = const_int | bool | character | string
+
 tab = "  "
 type = ("num" | "bool" | "str" | "vec")
 operator = "+" | "-" | "*" | "/" | "%"
@@ -27,10 +35,11 @@ simple_statement =  declaration_statement | assignment_statement | io_statement
 
 declaration_statement = type identifier ["=" expression]
 assignment_statement = identifier "=" expression
-expression = term [operation term]
+expression = term {("+" | "-" term)}
 io_statement = ("in"|"out") identifier
 
-term = (identifier | constant)
+term = term ("*" | "/" | "%") factor | factor
+factor = "(" expression ")" | identifier | constant
 operation = term {operator term}
 
 struct_statement = cond_statement | loop_statement
