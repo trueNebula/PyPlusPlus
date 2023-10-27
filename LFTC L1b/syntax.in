@@ -19,10 +19,10 @@ digit_seq = {digit}
 
 bool = "true" | "false"
 
-character = 'base_character'
+character = "'" base_character "''
 base_character = letter | digit
 
-string = 'base_string'
+string = "'' base_string "''
 base_string = character {character}
 
 
@@ -35,7 +35,7 @@ simple_statement =  declaration_statement | assignment_statement | io_statement
 
 declaration_statement = type identifier ["=" expression]
 assignment_statement = identifier "=" expression
-expression = term {("+" | "-" term)}
+expression = term {("+" | "-") term}
 io_statement = ("in"|"out") identifier
 
 term = term ("*" | "/" | "%") factor | factor
@@ -44,12 +44,13 @@ operation = term {operator term}
 
 struct_statement = cond_statement | loop_statement
 
-cond_statement = cond_start {tab statement} [: \n {tab statememt}]
+cond_statement = cond_start {tab statement} [":" "\n" {tab statement}]
 cond_start = condition "?" "\n"
 condition = identifier cond_operator identifier {relation_operator condition}
 
 loop_statement = for_statement | while_statement
 for_statement = for_start {tab statement}
 for_start = identifier "," step "->" constant "\n"
+step = identifier "+" constant | identifier "-" constant
 while_statement = while_start {tab statement}
 while_start = identifier "->" constant {relation_operator identifier "->" constant} "\n" 

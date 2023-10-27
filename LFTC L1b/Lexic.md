@@ -1,8 +1,7 @@
 ## Alphabet
 
-a. Uppercase and Lowercase letters of the English language (a-z A-Z)
-b. Underline (\_)
-c. Decimal digits (0-9)
+a. Uppercase and Lowercase letters of the English language (A-Z a-z)
+b. Decimal digits (0-9)
 
 ## Lexic
 
@@ -35,12 +34,12 @@ bool = "true" | "false"
 
 - Character
 ```EBNF
-character = 'base_character'
+character = "'" base_character "''
 base_character = letter | digit
 ```
 
 - String
 ```EBNF
-string = 'base_string'
+string = "'" base_string "''
 base_string = character {character}
 ```
