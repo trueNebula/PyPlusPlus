@@ -1,0 +1,12 @@
+main
+	num a b
+	in a b
+	a -> 0 & b -> 0
+		a > b ?
+			a = a % b
+		:
+			b = b % a
+	a = 0 ?
+		out b
+	:
+		out a

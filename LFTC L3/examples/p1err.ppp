@@ -1,0 +1,6 @@
+main
+	'num a b c
+	in a b c
+	num res1 =- min a b
+	num res2 = min res1 c
+	out res2
