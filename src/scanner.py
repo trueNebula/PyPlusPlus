@@ -68,7 +68,7 @@ class Scanner:
         separators = []
         keywords = []
 
-        with open('token.in', 'r') as file:
+        with open('../docs/token.in', 'r') as file:
             lines = file.readlines()
 
         spaces = 0
