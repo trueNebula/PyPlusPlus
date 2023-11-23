@@ -1,5 +1,6 @@
 from tables.symbol_table import SymbolTable
 from tables.pif import PIF
+from finite_automata import FiniteAutomata
 import re
 
 class Scanner:
@@ -8,10 +9,12 @@ class Scanner:
         self.pif = PIF()
         self.operators, self.separators, self.keywords = self.get_tokens()
         self.errors = []
+        self.identifier_fa = FiniteAutomata()
+        self.int_fa = FiniteAutomata()
 
-        # print(self.operators)
-        # print(self.separators)
-        # print(self.keywords)
+        self.identifier_fa.read('./examples/automatas/fa_id.in')
+        self.int_fa.read('./examples/automatas/fa_int.in')
+        
 
     def detect(self, token) -> None:
         if token in self.tokens:
@@ -27,8 +30,8 @@ class Scanner:
                 else: 
                     raise Exception("Lexical error")
 
-    def error(self, token, nrLine):
-        self.errors.append("Lexical error at line " + str(nrLine) + ": " + token)
+    def error(self, token, line_no):
+        self.errors.append("Lexical error at line " + str(line_no) + ": " + token)
 
     def scan(self, filename):
         with open(filename, 'r') as file:
@@ -44,11 +47,11 @@ class Scanner:
                     # operators, separators and keywords
                     self.pif.add(token, -1)
                 else:
-                    if re.match("^[a-zA-Z][a-zA-Z0-9]*$", token) is not None:
+                    if self.identifier_fa.is_accepted(token):
                         # identifiers
                         index = self.sym_table.add(token)
                         self.pif.add("id", index)
-                    elif  re.match("^\"[A-Za-z0-9\.\?\!, ]*\"$", token) is not None or token == "0" or re.match("^-?[1-9][0-9]*$", token) is not None:
+                    elif  re.match("^\"[A-Za-z0-9\.\?\!, ]*\"$", token) is not None or token == "0" or self.int_fa.is_accepted(token):
                         # constants
                         index = self.sym_table.add(token)
                         self.pif.add("const", index)
