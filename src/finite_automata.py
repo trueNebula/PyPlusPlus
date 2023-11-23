@@ -26,13 +26,8 @@ class FiniteAutomata:
                 if (initial, route) in self.transitions.keys():
                     self.transitions[(initial, route)].append(final)
                 else:
-                    self.transitions[(initial, route)] = final
-
-        print(self.states)
-        print(self.alphabet)
-        print(self.transitions)
-        print(self.initial_state)
-        print(self.final_states)
+                    self.transitions[(initial, route)] = []
+                    self.transitions[(initial, route)].append(final)
 
         self.validate()
 
@@ -57,8 +52,6 @@ class FiniteAutomata:
                 return
 
             for final_state in self.transitions[transition]:
-                print (self.transitions[transition])
-                print (final_state)
                 if final_state not in self.states:
                     self.err = 'Transition ' + str(transition) + ' invalid ' + final_state
                     return

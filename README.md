@@ -35,3 +35,40 @@ The Scanner is implemented.
 The following regexes are used to match the tokens:
 - identifier: `^[a-zA-Z][a-zA-Z0-9]*$`
 - constant: `^\"[A-Za-z0-9\.\?\!, ]*\"$` (strings) and `^-?[1-9][0-9]*$` (integers)
+
+## Finite Automata
+The finite automata parser is implemented using arrays and objects. It is used to match the following tokens:
+- integer constants (fa_id.in)
+- identifiers (fa_id.in)
+
+### Class attributes
+- states -> the number of states in the finite automata
+- alphabet -> the alphabet of the finite automata
+- transitions -> the transition function of the finite automata
+- initial_state -> the initial state of the finite automata
+- final_states -> the final states of the finite automata
+- err -> error string used to signal that the finite automata is in an invalid state
+
+### Operations
+- read(filename) -> reads the finite automata from a file
+- validate() -> validates the finite automata
+- is_deterministic() -> checks if the finite automata is deterministic
+- is_accepted(sequence) -> checks if a given sequence is accepted by the finite automata
+- getters for the class attributes
+
+### Structure
+The finite automata is read from an input file with the following structure:
+```
+file = states '\n' alphabet '\n' initial_state '\n' final_states '\n' transitions
+states = state {' ' state}
+alphabet = symbol {' ' symbol}
+initial_state = state
+final_state = state {' ' state}
+transitions = transition {'\n' transition}
+transition = state ' ' symbol ' ' state
+state = letter {digit}
+symbol = letter | digit | special
+letter = 'a' | 'b' | ... | 'z' | 'A' | 'B' | ... | 'Z'
+digit = '0' | '1' | ... | '9'
+special = '+' | '-' | '_' | ...  
+```
