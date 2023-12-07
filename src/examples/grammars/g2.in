@@ -1,0 +1,28 @@
+program statememts statememt simple_statement declaration_statement assignment_statement expression io_statement term factor operation struct_statement ts cond_aux else cond_statement cond_start condition_aux condition loop_statement for_statement for_start while_statement while_start while_aux
+\n tab * / % : -> , identifier constant 
+program
+program => main \n statements
+statements => tab statement | tab statement statements 
+statement => simple_statement \n | struct_statement \n
+simple_statement => declaration_statement | assignment_statement | io_statement
+declaration_statement => type identifier | type identifier = expression
+assignment_statement => identifier = expression
+expression => term | expression + term | expression - term
+io_statement => in identifier | out identifier
+term => term * factor | term / factor | term % factor | factor
+factor => ( expression ) | identifier | constant
+operation => term | operation operator term
+struct_statement => cond_statement | loop_statement
+ts => tab statement
+cond_aux => ts cond_aux | eps
+else => : \n cond_aux
+cond_statement => cond_start cond_aux else
+cond_start => condition ? \n
+condition_aux => relation_operator condition condition_aux | eps
+condition => identifier cond_operator identifier condition_aux
+loop_statement = for_statement | while_statement
+for_statement = for_start cond_aux
+for_start = identifier , step -> constant \n
+while_statement => while_start cond_aux
+while_aux => relation_operator identifier -> constant while_aux | eps
+while_start => identifier -> constant while_aux \n
