@@ -22,7 +22,7 @@ class Grammar:
             production_index = 0
             for index in range(3, len(lines)):
                 production = lines[index]
-                l, r = production.split("->")
+                l, r = production.split("=>")
                 l = l.strip().split(' ')
                 r = r.strip().split(' ')
                 l = tuple(l)
