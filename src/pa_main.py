@@ -19,7 +19,11 @@ class Test(unittest.TestCase):
         self.assertEqual(self.p.get_config().get_current_state(), 'back')
         self.assertEqual(self.p.get_config().get_current_position(), 2)
         self.assertEqual(self.p.get_config().get_stack(), ['S'])
-
+        self.p.back()
+        self.assertEqual(self.p.get_config().get_current_state(), 'back')
+        self.assertEqual(self.p.get_config().get_current_position(), 1)
+        self.assertEqual(self.p.get_config().get_stack(), [])
+        self.assertEqual(self.p.get_config().get_input(), [['S']])
 
 if __name__ == "__main__":
     t = Test()
