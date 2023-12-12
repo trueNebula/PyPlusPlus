@@ -1,4 +1,4 @@
-from finite_automata import FiniteAutomata
+from structures.finite_automata import FiniteAutomata
 
 class CLI:
     def __init__(self) -> None:

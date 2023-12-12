@@ -1,5 +1,5 @@
 import sys
-from scanner import Scanner
+from structures.scanner import Scanner
 
 if len(sys.argv) == 1:
     raise Exception("No filename found")

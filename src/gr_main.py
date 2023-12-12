@@ -1,5 +1,5 @@
 import sys
-from grammar import Grammar
+from structures.grammar import Grammar
 
 if len(sys.argv) == 1:
     raise Exception("No filename found")

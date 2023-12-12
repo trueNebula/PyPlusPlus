@@ -1,6 +1,6 @@
 from tables.symbol_table import SymbolTable
 from tables.pif import PIF
-from finite_automata import FiniteAutomata
+from structures.finite_automata import FiniteAutomata
 import re
 
 class Scanner:
