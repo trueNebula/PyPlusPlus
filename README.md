@@ -87,4 +87,26 @@ The grammar used for the parser is implemented using arrays and objects.
 - is_CFG() -> checks if the grammar is context free
 - getters for the class attributes
 - get_productions_for_nonterminals(nonterminal) -> returns the productions for a given non-terminal
-- export() 
+- export()
+
+## Parser
+The parser implements the functionality of a Recursive Descendent parsing algorithm using a table to represent the Parsing Tree.
+
+### Class Atrributes
+- grammar -> the grammar used
+- word -> the sequence to parse
+- config -> the configuration used
+
+The Configuration class represents the stacks and members used by the parser, along with methods to use said stacks and members
+- stack -> the work stack
+- input -> the input stack
+- current_state -> the current state of the parser
+- current_position -> the current position in the work stack
+
+### Operations
+- momentary_insuccess -> sets the state to a backtracking state
+- success -> sets the state to a successful state
+- advance -> parses through one character in the work stack
+- back -> goes back a character that was parsed
+- expand -> expands the used grammar to continue parsing
+- another_try -> goes back and uses another approach to advance by expanding
