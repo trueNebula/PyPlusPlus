@@ -3,22 +3,39 @@ class Configuration:
         self.current_state = 'normal'
         self.current_position = 1
         self.stack = []
-        self.input = [[starting_symbol]]
+        self.input = [starting_symbol]
 
     def push(self, elem):
         self.stack.append(elem)
 
     def pop(self):
+        if len(self.stack) == 0:
+            return None
+        
         return self.stack.pop()
 
     def peek(self):
+        if len(self.stack) == 0:
+            return None
+        
         return self.stack[-1]
 
     def push_input(self, elem):
-        self.input.append(elem)
+        print('push', self.input)
+        self.input.insert(0, elem)
+        print('push', self.input)
 
     def pop_input(self):
-        return self.input.pop()
+        if len(self.input) == 0:
+            return None
+        
+        return self.input.pop(0)
+    
+    def peek_input(self):
+        if len(self.input) == 0:
+            return None
+         
+        return self.input[0]
 
     def increment(self):
         self.current_position += 1

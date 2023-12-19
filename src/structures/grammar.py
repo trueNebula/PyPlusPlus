@@ -18,15 +18,15 @@ class Grammar:
             self.nonterminals = lines[0].split(" ")
             self.terminals = lines[1].split(" ")
             self.start_symbol = lines[2]
-            
+
             production_index = 0
             for index in range(3, len(lines)):
                 production = lines[index]
                 l, r = production.split("=>")
                 l = l.strip().split(' ')
-                r = r.strip().split(' ')
-                l = tuple(l)
-                
+                r = r.strip().split('|')
+                l = l[0]
+
                 for val in r:
                     production_index += 1
                     values = val.strip().split(' ')
@@ -35,16 +35,16 @@ class Grammar:
                         self.productions[l].append((values, production_index))
                     else:
                         self.productions[l] = [(values, production_index)]
-    
+
     def get_terminals(self):
         return self.terminals
-    
+
     def get_nonterminals(self):
         return self.nonterminals
-    
+
     def get_productions(self):
         return self.productions
-    
+
     def get_productions_for_nonterminals(self, nonterminal):
         productions = []
 
@@ -52,9 +52,9 @@ class Grammar:
             for l in self.productions.keys():
                 if l[0] == nonterminal:
                     return self.productions[l]
-        
+
         return productions
-        
+
     def is_CFG(self) -> bool:
         for l in self.productions.keys():
             if len(l) != 1:

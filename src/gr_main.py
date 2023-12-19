@@ -1,4 +1,5 @@
 import sys
+
 from structures.grammar import Grammar
 
 if len(sys.argv) == 1:
@@ -6,8 +7,9 @@ if len(sys.argv) == 1:
 
 n = (sys.argv[1])
 
-grammar = Grammar()
-grammar.read("examples/grammars/" + n)
-grammar.export()
-nt = input("Enter Nonterminal: ")
-print(grammar.get_productions_for_nonterminals(nt))
+if __name__ == "__main__":
+    grammar = Grammar()
+    grammar.read("examples/grammars/" + n)
+    grammar.export()
+    nt = input("Enter Nonterminal: ")
+    print(grammar.get_productions_for_nonterminals(nt))
